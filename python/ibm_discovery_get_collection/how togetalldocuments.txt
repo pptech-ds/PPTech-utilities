@@ -1,0 +1,13 @@
+That error message is misleading and we will be changing it. There is no way to increase the result window size above 10000 at a time.
+
+As for the ability to return all the results, you will never be able to return all results at once, you will need to chunk the results up into smaller pieces of like 1000 or so. What you'd need to do to chunk the result set up is to to sort your results by a unique field and then do a range query across that field.
+
+For example:
+
+first request would be something like:
+
+sort=+unique_number&filter=unique_number<=1000&count=1000
+
+second request would be something like:
+
+sort=+unique_number&filter=unique_number<=2000&count=1000
